@@ -66,8 +66,8 @@ export function ContactSection() {
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+212 673 97 96 92 / +212 661 66 65 01",
-      href: "tel:+212673979692",
+      value: "+212 637 97 96 92 / +212 661 66 65 01",
+      href: "tel:+212637979692",
     },
     {
       icon: MapPin,
