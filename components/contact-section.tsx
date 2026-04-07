@@ -60,8 +60,8 @@ export function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      value: "contact@nerdhub.fr",
-      href: "mailto:contact@nerdhub.fr",
+      value: "contact@nerd-hub.io",
+      href: "mailto:contact@nerd-hub.io",
     },
     {
       icon: Phone,
