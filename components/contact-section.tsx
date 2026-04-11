@@ -8,8 +8,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { useTranslation } from "@/lib/i18n/context"
 
 export function ContactSection() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,20 +61,20 @@ export function ContactSection() {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
+      title: t.contact.info.email,
       value: "contact@nerd-hub.io",
       href: "mailto:contact@nerd-hub.io",
     },
     {
       icon: Phone,
-      title: "Téléphone",
+      title: t.contact.info.phone,
       value: "+212 637 97 96 92 / +212 661 66 65 01",
       href: "tel:+212637979692",
     },
     {
       icon: MapPin,
-      title: "Adresse",
-      value: "Casablanca, Maroc",
+      title: t.contact.info.address,
+      value: t.contact.info.addressValue,
       href: "#",
     },
   ]
@@ -82,26 +84,23 @@ export function ContactSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-card-foreground">
-            Contactez <span className="text-primary">NerdHub</span>
+            {t.contact.title} <span className="text-primary">{t.contact.brand}</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Prêt à démarrer votre projet ? Notre équipe d'experts est là pour vous accompagner dans votre transformation
-            digitale.
-          </p>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">{t.contact.description}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <Card className="bg-background border-border">
             <CardHeader>
-              <CardTitle className="text-2xl text-foreground">Envoyez-nous un message</CardTitle>
+              <CardTitle className="text-2xl text-foreground">{t.contact.formTitle}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Nom complet
+                      {t.contact.form.name}
                     </label>
                     <Input
                       id="name"
@@ -114,7 +113,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email
+                      {t.contact.form.email}
                     </label>
                     <Input
                       id="email"
@@ -130,7 +129,7 @@ export function ContactSection() {
 
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                    Entreprise
+                    {t.contact.form.company}
                   </label>
                   <Input
                     id="company"
@@ -143,7 +142,7 @@ export function ContactSection() {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Message
+                    {t.contact.form.message}
                   </label>
                   <Textarea
                     id="message"
@@ -161,15 +160,15 @@ export function ContactSection() {
                   disabled={isSubmitting}
                   className="w-full bg-primary hover:bg-accent text-primary-foreground group"
                 >
-                  {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+                  {isSubmitting ? t.contact.form.submitting : t.contact.form.submit}
                   {!isSubmitting && <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />}
                 </Button>
 
                 {submitStatus === "success" && (
-                  <p className="text-green-500 text-sm text-center">Message envoyé avec succès !</p>
+                  <p className="text-green-500 text-sm text-center">{t.contact.form.success}</p>
                 )}
                 {submitStatus === "error" && (
-                  <p className="text-red-500 text-sm text-center">Erreur lors de l'envoi. Veuillez réessayer.</p>
+                  <p className="text-red-500 text-sm text-center">{t.contact.form.error}</p>
                 )}
               </form>
             </CardContent>
@@ -178,7 +177,7 @@ export function ContactSection() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-card-foreground">Informations de contact</h3>
+              <h3 className="text-2xl font-bold mb-6 text-card-foreground">{t.contact.info.title}</h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start space-x-4">
@@ -197,23 +196,23 @@ export function ContactSection() {
             </div>
 
             <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-8">
-              <h4 className="text-xl font-bold mb-4 text-card-foreground">Pourquoi choisir NerdHub ?</h4>
+              <h4 className="text-xl font-bold mb-4 text-card-foreground">{t.contact.why.title}</h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-card-foreground">Expertise technique reconnue</span>
+                  <span className="text-card-foreground">{t.contact.why.point1}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-accent rounded-full" />
-                  <span className="text-card-foreground">Accompagnement personnalisé</span>
+                  <span className="text-card-foreground">{t.contact.why.point2}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-card-foreground">Solutions évolutives et durables</span>
+                  <span className="text-card-foreground">{t.contact.why.point3}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-accent rounded-full" />
-                  <span className="text-card-foreground">Support technique réactif</span>
+                  <span className="text-card-foreground">{t.contact.why.point4}</span>
                 </div>
               </div>
             </div>

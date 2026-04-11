@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
+import { useTranslation } from "@/lib/i18n/context"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { language, setLanguage, t } = useTranslation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +19,10 @@ export function Header() {
   }, [])
 
   const navItems = [
-    { href: "#about", label: "About" },
-    { href: "#solutions", label: "Solutions" },
-    { href: "#services", label: "Services" },
-    { href: "#contact", label: "Contact" },
+    { href: "#about", label: t.nav.about },
+    { href: "#solutions", label: t.nav.solutions },
+    { href: "#services", label: t.nav.services },
+    { href: "#contact", label: t.nav.contact },
   ]
 
   const handleNavClick = (href: string) => {
@@ -82,15 +84,19 @@ export function Header() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
+            <LanguageToggle language={language} setLanguage={setLanguage} />
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground p-2 rounded-lg hover:bg-secondary/20 transition-colors drop-shadow-sm"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageToggle language={language} setLanguage={setLanguage} />
+            <button
+              className="text-foreground p-2 rounded-lg hover:bg-secondary/20 transition-colors drop-shadow-sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -111,5 +117,36 @@ export function Header() {
         )}
       </div>
     </header>
+  )
+}
+
+function LanguageToggle({
+  language,
+  setLanguage,
+}: {
+  language: "fr" | "en"
+  setLanguage: (lang: "fr" | "en") => void
+}) {
+  return (
+    <div className="flex items-center rounded-full border border-border/40 bg-background/60 backdrop-blur-sm p-0.5">
+      <button
+        onClick={() => setLanguage("fr")}
+        className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+          language === "fr" ? "bg-primary text-white shadow" : "text-foreground/70 hover:text-foreground"
+        }`}
+        aria-label="Français"
+      >
+        FR
+      </button>
+      <button
+        onClick={() => setLanguage("en")}
+        className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+          language === "en" ? "bg-primary text-white shadow" : "text-foreground/70 hover:text-foreground"
+        }`}
+        aria-label="English"
+      >
+        EN
+      </button>
+    </div>
   )
 }

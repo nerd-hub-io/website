@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import Script from "next/script"
 import { Suspense } from "react"
+import { LanguageProvider } from "@/lib/i18n/context"
 
 export const metadata: Metadata = {
   title: "NerdHub - Innovation. Agility. Trust.",
@@ -54,7 +55,9 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
-        <Suspense fallback={null}>{children}</Suspense>
+        <LanguageProvider>
+          <Suspense fallback={null}>{children}</Suspense>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>

@@ -2,8 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Cpu, Cloud, Zap, Brain, Database, Shield } from "lucide-react"
+import { useTranslation } from "@/lib/i18n/context"
 
 export function HeroSection() {
+  const { t } = useTranslation()
+
   const handleContactClick = () => {
     const element = document.querySelector("#contact")
     if (element) {
@@ -73,15 +76,12 @@ export function HeroSection() {
 
           <div className="flex items-center justify-center space-x-3 mb-10">
             <div className="w-3 h-3 bg-gradient-to-r from-primary to-accent rounded-full animate-pulse" />
-            <p className="text-2xl md:text-3xl text-muted-foreground font-bold tracking-wide">
-              Innovation. Agility. Trust.
-            </p>
+            <p className="text-2xl md:text-3xl text-muted-foreground font-bold tracking-wide">{t.hero.tagline}</p>
             <div className="w-3 h-3 bg-gradient-to-r from-accent to-primary rounded-full animate-pulse" />
           </div>
 
           <p className="text-xl md:text-2xl text-foreground/80 mb-16 max-w-4xl mx-auto text-pretty leading-relaxed font-medium">
-            Transform your digital landscape with cutting-edge solutions in DevOps, Cloud Architecture, API Management,
-            and Artificial Intelligence. We deliver innovation that drives results.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
@@ -90,7 +90,7 @@ export function HeroSection() {
               onClick={handleServicesClick}
               className="bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 animate-pulse-glow group text-lg"
             >
-              Discover Our Solutions
+              {t.hero.ctaSolutions}
               <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
             <Button
@@ -99,7 +99,7 @@ export function HeroSection() {
               onClick={handleContactClick}
               className="border-2 border-primary text-primary hover:bg-primary hover:text-white bg-transparent/50 backdrop-blur-sm font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
             >
-              Contact Us
+              {t.hero.ctaContact}
             </Button>
           </div>
 
@@ -108,37 +108,37 @@ export function HeroSection() {
               <div className="p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/10 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
                 <Cpu className="h-8 w-8 text-primary animate-pulse" />
               </div>
-              <span className="text-sm font-semibold text-foreground/70">DevOps</span>
+              <span className="text-sm font-semibold text-foreground/70">{t.hero.pillars.devops}</span>
             </div>
             <div className="flex flex-col items-center space-y-3 group">
               <div className="p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/10 group-hover:from-accent/30 group-hover:to-primary/20 transition-all duration-300">
                 <Cloud className="h-8 w-8 text-accent animate-pulse" style={{ animationDelay: "1s" }} />
               </div>
-              <span className="text-sm font-semibold text-foreground/70">Cloud</span>
+              <span className="text-sm font-semibold text-foreground/70">{t.hero.pillars.cloud}</span>
             </div>
             <div className="flex flex-col items-center space-y-3 group">
               <div className="p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/10 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
                 <Brain className="h-8 w-8 text-primary animate-pulse" style={{ animationDelay: "2s" }} />
               </div>
-              <span className="text-sm font-semibold text-foreground/70">AI</span>
+              <span className="text-sm font-semibold text-foreground/70">{t.hero.pillars.ai}</span>
             </div>
             <div className="flex flex-col items-center space-y-3 group">
               <div className="p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/10 group-hover:from-accent/30 group-hover:to-primary/20 transition-all duration-300">
                 <Database className="h-8 w-8 text-accent animate-pulse" style={{ animationDelay: "3s" }} />
               </div>
-              <span className="text-sm font-semibold text-foreground/70">Data</span>
+              <span className="text-sm font-semibold text-foreground/70">{t.hero.pillars.data}</span>
             </div>
             <div className="flex flex-col items-center space-y-3 group">
               <div className="p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/10 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
                 <Shield className="h-8 w-8 text-primary animate-pulse" style={{ animationDelay: "4s" }} />
               </div>
-              <span className="text-sm font-semibold text-foreground/70">Security</span>
+              <span className="text-sm font-semibold text-foreground/70">{t.hero.pillars.security}</span>
             </div>
             <div className="flex flex-col items-center space-y-3 group">
               <div className="p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/10 group-hover:from-accent/30 group-hover:to-primary/20 transition-all duration-300">
                 <Zap className="h-8 w-8 text-accent animate-pulse" style={{ animationDelay: "5s" }} />
               </div>
-              <span className="text-sm font-semibold text-foreground/70">Innovation</span>
+              <span className="text-sm font-semibold text-foreground/70">{t.hero.pillars.innovation}</span>
             </div>
           </div>
         </div>
